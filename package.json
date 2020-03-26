@@ -1,6 +1,6 @@
 {
   "name": "watermark-component",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "watermark 可用于任何框架，支持多种引入方式，支持防止删除水印，防止修改样式隐藏水印等功能",
   "bundleDependencies": false,
   "homepage": "https://github.com/wangqiangstar/watermark-component#readme",
