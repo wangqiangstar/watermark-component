@@ -2,12 +2,12 @@
  * @Author: wangqiang
  * @Date: 2020-03-26 11:57:29
  * @LastEditors: wangqiang
- * @LastEditTime: 2020-03-26 17:12:17
+ * @LastEditTime: 2020-03-26 18:32:42
  * @FilePath: \tengxunyun\watermark-component\README.md
  * @Descripttion: 
  -->
 # watermark-component
-`watermark-com`git remote add origin git@github.com:wangqiangstar/watermark-component.git。
+`watermark-com`是一个通用的水印库，项目运用rollup构建，输出iife、cjs、esm三个压缩文件，分别对应了三种使用方式，能够适用于原生js，react、Vue、angular、jq等主流框架。支持监听浏览器resize事件和mutationObserve对象监听DOM变化并做相应的调整。
 
 ## 一、使用方法
 
