@@ -2,8 +2,8 @@
  * @Author: wangqiang
  * @Date: 2020-03-26 11:57:29
  * @LastEditors: wangqiang
- * @LastEditTime: 2020-03-26 13:12:52
- * @FilePath: \tengxunyun\watermark-com\src\util.js
+ * @LastEditTime: 2020-03-27 10:20:52
+ * @FilePath: \tengxunyun\watermark-component\src\util.js
  * @Descripttion: 
  */
 /*
@@ -19,18 +19,37 @@ const canvasTextAutoLine = parameterObj => {
   let { str, ctx, initX, initY, lineHeight, canvasWidth } = parameterObj
   let lineWidth = 0
   let lastSubStrIndex = 0
-  for (let i = 0; i < str.length; i++) {
-    lineWidth += ctx.measureText(str[i]).width
-    if (lineWidth > canvasWidth - 50) { // 考虑边界需加50的buffer
-      ctx.fillText(str.slice(lastSubStrIndex, i), initX, initY)
-      initY += lineHeight
-      lineWidth = 0
-      lastSubStrIndex = i
+  let lines = str.split("\n")
+  for (let j = 0; j < lines.length; j++) {
+    let words = lines[j].split(' ')
+    let line = ''
+    for (let i = 0; i < words.length; i++) {
+      // lineWidth += ctx.measureText(words[i]).width
+      // if (lineWidth > canvasWidth - 50) { // 考虑边界需加50的buffer
+      //   ctx.fillText(words.slice(lastSubStrIndex, i), initX, initY)
+      //   initY += lineHeight
+      //   lineWidth = 0
+      //   lastSubStrIndex = i
+      // }
+      // if (i == words.length - 1) {
+      //   ctx.fillText(words.substring(lastSubStrIndex, i + 1), initX, initY)
+      // }
+      let testLine = line + words[i] + ' ';
+      let metrics = ctx.measureText(testLine);
+      let testWidth = metrics.width;
+      if (testWidth > canvasWidth && i > 0) {
+          ctx.fillText(line, initX, initY);
+          line = words[i] + ' ';
+          initY += lineHeight;
+      }
+      else {
+          line = testLine;
+      }
     }
-    if (i == str.length - 1) {
-      ctx.fillText(str.substring(lastSubStrIndex, i + 1), initX, initY)
-    }
+    ctx.fillText(line, initX, initY);
+    initY += lineHeight;
   }
+  
 }
 
 // 监控水印节点变化
@@ -50,7 +69,8 @@ const monitorDom = (parentSelector, callBack) => {
     characterData: true,
     subtree: true,
     attributeOldValue: true,
-    characterDataOldValue: true
+    characterDataOldValue: true,
+    attributeFilter: [ "style", "class"]
   }
   const MutationObserver = window.MutationObserver ||
     window.WebKitMutationObserver ||

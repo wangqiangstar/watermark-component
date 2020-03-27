@@ -1,3 +1,11 @@
+/*
+ * @Author: wangqiang
+ * @Date: 2020-03-26 13:40:44
+ * @LastEditors: wangqiang
+ * @LastEditTime: 2020-03-27 16:11:30
+ * @FilePath: \tengxunyun\watermark-component\src\loadMark.js
+ * @Descripttion: 
+ */
 import { canvasTextAutoLine } from './util'
 import { DEFAULT_SETTINGS } from './constants'
 
@@ -30,12 +38,13 @@ export default function loadMark (settings) {
   canvas.id = 'watermarkCanvasId'
   canvas.width = newSettings.singleWidth // 单个水印的宽度
   canvas.height = newSettings.singleHeight // 单个水印的高度
-  ctx.font = `normal ${newSettings.fontSize}px 'Microsoft Yahei','serif','sans-serif'` // 设置字体样式，'serif','sans-serif'为通用字体
-  ctx.fillStyle = `rgba(112, 113, 114, ${newSettings.transparency})` // 水印字体颜色
-  ctx.translate(canvas.width / 2, canvas.height / 2)
+  ctx.font = `normal ${newSettings.fontWeight} ${newSettings.fontSize}px 'Microsoft Yahei','serif','sans-serif'` // 设置字体样式，'serif','sans-serif'为通用字体
+  ctx.fillStyle = newSettings.fontColor // 水印字体颜色
+  ctx.globalAlpha = newSettings.transparency
+  // ctx.translate(canvas.width / 2, canvas.height / 2)
   ctx.rotate(angle) // 水印偏转角度
-  ctx.translate(-canvas.width / 2, -canvas.height / 2)
-  ctx.textAlign = 'center'
+  // ctx.translate(-canvas.width / 2, -canvas.height / 2)
+  ctx.textAlign = 'left'
 
   // 水印换行的情况下计算行高（考虑间隙加上5）
   const lineHeight = newSettings.fontSize + 5
@@ -45,7 +54,7 @@ export default function loadMark (settings) {
   const parameterObj = {
     str: newSettings.text,
     ctx,
-    initX: newSettings.singleWidth / 2,
+    initX: -newSettings.singleWidth / 5,
     initY,
     lineHeight,
     canvasWidth: newSettings.singleWidth,
