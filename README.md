@@ -2,7 +2,7 @@
  * @Author: wangqiang
  * @Date: 2020-03-26 11:57:29
  * @LastEditors: wangqiang
- * @LastEditTime: 2020-03-26 18:32:42
+ * @LastEditTime: 2020-03-27 18:14:47
  * @FilePath: \tengxunyun\watermark-component\README.md
  * @Descripttion: 
  -->
@@ -55,6 +55,8 @@ watermark({ text: "这是测试水印" })
   id: 'wm_div_id', // 水印总体的id
   text: '测试水印', // 水印的内容
   transparency: 0.15, // 水印透明度
+  fontColor: '#727071', // 水印字体颜色
+  fontWeight: 'normal', // 水印字体粗细
   fontSize: 16, // 水印字体大小，以px为单位
   parentLeft: 0, // 水印整体左边距离
   parentTop: 0, // 水印整体顶边距离
