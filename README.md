@@ -33,8 +33,8 @@ npm install watermark-component --save
 
 第二步：引入水印模块 
 ```
-import { watermark } from 'watermark-com'
-// const watermark = require('watermark-com')
+import { watermark } from 'watermark-component'
+// const watermark = require('watermark-component')
 ```
 
 第三步：在确保页面DOM加载完毕之后，调用watermark方法
